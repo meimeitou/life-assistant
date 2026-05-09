@@ -450,6 +450,8 @@
         "env": {
           "DEFAULT_API_KEY": "$DEFAULT_API_KEY",
           "DEFAULT_API_BASE": "$DEFAULT_API_BASE",
+          "MEM0_API_KEY": "$MEM0_API_KEY",
+          "MEM0_API_BASE": "$MEM0_API_BASE",
           "MEM0_MODEL": "$MEM0_MODEL",
           "MEM0_EMBED_MODEL": "$MEM0_EMBED_MODEL"
         }

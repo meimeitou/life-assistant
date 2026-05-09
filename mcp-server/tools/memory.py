@@ -19,6 +19,9 @@ def _get_memory():
 
     from mem0 import Memory
 
+    _api_key = os.getenv("MEM0_API_KEY") or os.getenv("DEFAULT_API_KEY") or os.getenv("OPENAI_API_KEY", "")
+    _api_base = os.getenv("MEM0_API_BASE") or os.getenv("DEFAULT_API_BASE") or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+
     store_path = os.environ.get("DATA_DIR")
     if store_path:
         store_path = str(Path(store_path) / "memory_store")
@@ -29,16 +32,16 @@ def _get_memory():
             "provider": "openai",
             "config": {
                 "model": os.getenv("MEM0_MODEL", "gpt-4o-mini"),
-                "api_key": os.getenv("DEFAULT_API_KEY") or os.getenv("OPENAI_API_KEY", ""),
-                "openai_base_url": os.getenv("DEFAULT_API_BASE") or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+                "api_key": _api_key,
+                "openai_base_url": _api_base,
             },
         },
         "embedder": {
             "provider": "openai",
             "config": {
                 "model": os.getenv("MEM0_EMBED_MODEL", "text-embedding-3-small"),
-                "api_key": os.getenv("DEFAULT_API_KEY") or os.getenv("OPENAI_API_KEY", ""),
-                "openai_base_url": os.getenv("DEFAULT_API_BASE") or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+                "api_key": _api_key,
+                "openai_base_url": _api_base,
             },
         },
         "vector_store": {
