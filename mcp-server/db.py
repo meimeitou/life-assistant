@@ -116,6 +116,30 @@ _MIGRATIONS: list[tuple[int, str]] = [
         CREATE INDEX IF NOT EXISTS idx_health_logs_type       ON health_logs(type);
         CREATE INDEX IF NOT EXISTS idx_health_logs_subject    ON health_logs(subject);
         CREATE INDEX IF NOT EXISTS idx_health_logs_start_time ON health_logs(start_time);
+
+        CREATE TABLE IF NOT EXISTS habits (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            name         TEXT    NOT NULL,
+            target_value REAL,
+            unit         TEXT    NOT NULL DEFAULT '',
+            frequency    TEXT    NOT NULL DEFAULT 'daily'
+                         CHECK(frequency IN ('daily','weekly')),
+            active       INTEGER NOT NULL DEFAULT 1,
+            created_at   TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+
+        CREATE TABLE IF NOT EXISTS habit_logs (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            habit_id   INTEGER NOT NULL REFERENCES habits(id) ON DELETE CASCADE,
+            date       TEXT    NOT NULL,
+            value      REAL,
+            notes      TEXT    NOT NULL DEFAULT '',
+            created_at TEXT    NOT NULL DEFAULT (datetime('now')),
+            UNIQUE(habit_id, date)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_habit_logs_habit_id ON habit_logs(habit_id);
+        CREATE INDEX IF NOT EXISTS idx_habit_logs_date     ON habit_logs(date);
     """),
 ]
 
@@ -135,7 +159,7 @@ def db_status() -> dict:
     with get_conn() as conn:
         version = _get_version(conn)
         counts = {}
-        for table in ("tasks", "events", "notes", "transactions", "health_logs"):
+        for table in ("tasks", "events", "notes", "transactions", "health_logs", "habits", "habit_logs"):
             row = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()
             counts[table] = row[0]
         return {"schema_version": version, "latest_version": SCHEMA_VERSION, "rows": counts}

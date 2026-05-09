@@ -22,6 +22,7 @@ from tools.notes import register as register_notes
 from tools.memory import register as register_memory
 from tools.ledger import register as register_ledger
 from tools.health import register as register_health
+from tools.habits import register as register_habits
 
 mcp = FastMCP("life-mcp")
 
@@ -33,6 +34,7 @@ register_notes(mcp)
 register_memory(mcp)
 register_ledger(mcp)
 register_health(mcp)
+register_habits(mcp)
 
 if __name__ == "__main__":
     mcp.run()

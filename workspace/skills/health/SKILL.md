@@ -53,16 +53,16 @@ type 字段开放，用户可以用任意字符串。
 ### 睡眠
 
 - "昨晚 11 点睡，今早 7 点起" → health_log_add(type="sleep", start_time="2026-05-08T23:00", end_time="2026-05-09T07:00")
-- "记录一下今天睡了 8 小时" → health_log_add(type="sleep", start_time="今天", value=480, unit="min")
+- "记录一下今天睡了 8 小时" → health_log_add(type="sleep", start_time="2026-05-09", value=480, unit="min")
 
 ### 运动
 
-- "刚跑了 5 公里" → health_log_add(type="exercise", start_time="现在", value=5, unit="km", notes="跑步")
-- "健身 1 小时" → health_log_add(type="exercise", start_time="现在", value=60, unit="min", notes="健身")
+- "刚跑了 5 公里" → health_log_add(type="exercise", start_time="2026-05-09T14:30", value=5, unit="km", notes="跑步")
+- "健身 1 小时" → health_log_add(type="exercise", start_time="2026-05-09T14:30", value=60, unit="min", notes="健身")
 
 ### 体重
 
-- "今天体重 55.2 公斤" → health_log_add(type="weight", start_time="今天", value=55.2, unit="kg")
+- "今天体重 55.2 公斤" → health_log_add(type="weight", start_time="2026-05-09", value=55.2, unit="kg")
 
 ## 查询与分析
 
