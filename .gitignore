@@ -1,0 +1,33 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# uv
+uv.lock
+
+# Database
+mcp-server/life.db
+mcp-server/life.db-shm
+mcp-server/life.db-wal
+
+# mem0 local vector store
+mcp-server/memory_store/
+
+# nanobot runtime
+workspace/memory/
+workspace/cron/
+workspace/sessions/
+workspace/.nanobot_session*
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+.env
+config.json
+weixin
+.nanobot

@@ -1,0 +1,10 @@
+[project]
+name = "life-assistant"
+version = "0.1.0"
+description = "Personal life assistant MCP server"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]",
+    "mem0ai",
+    "qrcode",
+]

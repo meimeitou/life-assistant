@@ -1,0 +1,14 @@
+services:
+  life-assistant:
+    build: .
+    env_file: .env
+    environment:
+      DATA_DIR: /data
+    volumes:
+      - app-data:/data
+      - weixin-state:/root/.nanobot
+    restart: unless-stopped
+
+volumes:
+  app-data:
+  weixin-state:
