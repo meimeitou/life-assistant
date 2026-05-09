@@ -1,5 +1,6 @@
 services:
   life-assistant:
+    image: meimeitou/life-assistant:latest
     build: .
     env_file: .env
     environment:
