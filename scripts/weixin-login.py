@@ -102,7 +102,11 @@ def main() -> None:
             break
 
     os.close(master_fd)
-    sys.exit(proc.wait())
+    rc = proc.wait()
+    # If account.json now exists, login succeeded regardless of nanobot's exit code.
+    if account_file.exists():
+        sys.exit(0)
+    sys.exit(rc)
 
 
 if __name__ == "__main__":
